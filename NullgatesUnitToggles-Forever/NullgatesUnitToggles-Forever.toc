@@ -1,10 +1,10 @@
 ## Interface: 16001
-## Title: |cff3399ffBleakfiber's|r |cffffffffUnit Toggles|r - |cffffd100Forever|r
+## Title: |cff3399ffNullgate's|r |cffffffffUnit Toggles|r - |cffffd100Forever|r
 ## Notes: Standalone unit nameplate and title CVar manager for World of Warcraft Forever.
-## Author: Bleakfiber
-## Version: 1.0.6
-## SavedVariables: BleakfibersUnitTogglesDB
-## OptionalDeps: BleakfibersAddonConfig-Forever
+## Author: Nullgate Studios
+## Version: 1.1.0
+## SavedVariables: NullgatesUnitTogglesDB
+## OptionalDeps: NullgatesAddonConfig-Forever
 ## X-License: Restricted - Source Available (All Rights Reserved, No Derivatives)
 
 # Data Layer (Database, Profiles, Defaults, Slash Commands, Master Hub Registration)
