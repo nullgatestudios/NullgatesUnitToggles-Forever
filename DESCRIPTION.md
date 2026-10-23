@@ -1,10 +1,9 @@
-# Bleakfiber's Unit Toggles - Forever
 
-**Bleakfiber's Unit Toggles** is a dedicated, zero-dependency CVar management suite crafted specifically for **World of Warcraft: Forever** (Interface 16001).
+**Nullgate's Unit Toggles** is a dedicated, zero-dependency CVar management suite crafted specifically for **World of Warcraft: Forever** (Interface 16001).
 
-Tired of memorizing `/console UnitName...` commands or digging through nested default interface menus just to declutter combat nameplates? Bleakfiber's Unit Toggles puts all **20 native unit overhead name, pet, guardian, totem, minion, and title CVars** into an intuitive Dark Slate & Gold control center with instant visual feedback, one-click combat presets, and full profile synchronization.
+Tired of memorizing `/console UnitName...` commands or digging through nested default interface menus just to declutter combat nameplates? Nullgate's Unit Toggles puts all **20 native unit overhead name, pet, guardian, totem, minion, and title CVars** into an intuitive Dark Slate & Gold control center with instant visual feedback, one-click combat presets, and full profile synchronization.
 
-Runs 100% standalone out of the box with **zero required external libraries**, and automatically integrates into **Bleakfiber's Addon Config** when installed.
+Runs 100% standalone out of the box with **zero required external libraries**, and automatically integrates into **Nullgate's Addon Config** when installed.
 
 ---
 
@@ -24,7 +23,7 @@ Runs 100% standalone out of the box with **zero required external libraries**, a
 - **Bidirectional Live Sync (`CVAR_UPDATE`)**: If you change a CVar via chat or Blizzard's options, the addon automatically detects the engine event and syncs your profile and open UI in real time.
 - **Dual-Mode Architecture**:
   - **Standalone Mode**: Opens a sleek, draggable **Dark Slate & Gold** (`#141A21` / `#D1AE47`) options window complete with title bar, close button, and standard `ESC`-key closing.
-  - **Master Hub Mode**: Seamlessly hooks into **`BleakfibersAddonConfig-Forever`**, embedding its balanced two-column canvas into the unified sidebar and syncing with master global profiles.
+  - **Master Hub Mode**: Seamlessly hooks into **`NullgatesAddonConfig-Forever`**, embedding its balanced two-column canvas into the unified sidebar and syncing with master global profiles.
 
 ---
 
@@ -72,22 +71,22 @@ Runs 100% standalone out of the box with **zero required external libraries**, a
 
 | Command | Action |
 | :--- | :--- |
-| `/but` or `/unittoggles` | Opens the configuration interface (Master Hub if installed, standalone window otherwise). |
-| `/but standalone` | Forces opening the standalone options window. |
-| `/but list` or `/but status` | Prints the live `[ON]` / `[OFF]` status of all 20 CVars directly to your chat window. |
-| `/but all [on\|off]` | Batch toggles all 20 unit nameplates on or off at once. |
-| `/but pvp` | Immediately applies the optimized PvP visibility preset. |
-| `/but <cvar> [0\|1]` | Directly toggles or sets any specific CVar from chat (e.g., `/but UnitNameEnemyTotemName 1`). |
-| `/but reset` | Resets the active profile back to Blizzard defaults. |
+| `/nut` or `/unittoggles` | Opens the configuration interface (Master Hub if installed, standalone window otherwise). |
+| `/nut standalone` | Forces opening the standalone options window. |
+| `/nut list` or `/nut status` | Prints the live `[ON]` / `[OFF]` status of all 20 CVars directly to your chat window. |
+| `/nut all [on\|off]` | Batch toggles all 20 unit nameplates on or off at once. |
+| `/nut pvp` | Immediately applies the optimized PvP visibility preset. |
+| `/nut <cvar> [0\|1]` | Directly toggles or sets any specific CVar from chat (e.g., `/nut UnitNameEnemyTotemName 1`). |
+| `/nut reset` | Resets the active profile back to Blizzard defaults. |
 
 ---
 
 ## Suite Integration
 
-Part of **Bleakfiber's Addon Suite for World of Warcraft Forever**:
-- **Bleakfiber's Addon Config** — Unified master configuration hub and profile manager.
-- **Bleakfiber's Action Bars** — Modular standalone action bar suite.
-- **Bleakfiber's Maps** — Minimap and World Map enhancements.
-- **Bleakfiber's Quest Tracker** — Modular quest tracking and Wayfinder 360° navigation HUD.
-- **Bleakfiber's Unit Toggles** — Instant CVar nameplate and title manager.
+Part of **Nullgate's Addon Suite for World of Warcraft Forever**:
+- **Nullgate's Addon Config** — Unified master configuration hub and profile manager.
+- **Nullgate's Action Bars** — Modular standalone action bar suite.
+- **Nullgate's Maps** — Minimap and World Map enhancements.
+- **Nullgate's Quest Tracker** — Modular quest tracking and Wayfinder 360° navigation HUD.
+- **Nullgate's Unit Toggles** — Instant CVar nameplate and title manager.
 

@@ -1,19 +1,19 @@
 --[[
-    Bleakfiber's Unit Toggles - Core.lua
+    Nullgate's Unit Toggles - Core.lua
     Core Framework: Addon Lifecycle, Engine CVar Synchronization & Event Handling
 ]]
 
 local addonName, BUT = ...
 BUT = BUT or {}
-_G["BleakfibersUnitToggles"] = BUT
+_G["NullgatesUnitToggles"] = BUT
 
-local Core = CreateFrame("Frame", "BleakfibersUnitTogglesCore")
+local Core = CreateFrame("Frame", "NullgatesUnitTogglesCore")
 BUT.Core = Core
-_G["BleakfibersUnitTogglesCore"] = Core
+_G["NullgatesUnitTogglesCore"] = Core
 
 local Config = setmetatable({}, {
     __index = function(_, k)
-        local c = BUT.Config or _G["BleakfibersUnitTogglesConfig"]
+        local c = BUT.Config or _G["NullgatesUnitTogglesConfig"]
         if c then return c[k] end
     end,
 })
@@ -39,7 +39,7 @@ end
 function Core:SyncFromEngine()
     if not Config.CVAR_DEFINITIONS then return end
     Config:InitDB()
-    local cur = BleakfibersUnitTogglesDB.profiles[BleakfibersUnitTogglesDB.activeProfile]
+    local cur = NullgatesUnitTogglesDB.profiles[NullgatesUnitTogglesDB.activeProfile]
     if not cur or not cur.cvars then return end
 
     for _, def in ipairs(Config.CVAR_DEFINITIONS) do
@@ -77,7 +77,7 @@ Core:SetScript("OnEvent", function(self, event, arg1, arg2)
         if cvarName and Config.CVAR_LOOKUP and Config.CVAR_LOOKUP[cvarName] then
             -- Sync live value to active profile
             local def = Config.CVAR_LOOKUP[cvarName]
-            local cur = BleakfibersUnitTogglesDB and BleakfibersUnitTogglesDB.profiles and BleakfibersUnitTogglesDB.profiles[Config:GetActiveProfile()]
+            local cur = NullgatesUnitTogglesDB and NullgatesUnitTogglesDB.profiles and NullgatesUnitTogglesDB.profiles[Config:GetActiveProfile()]
             if cur and cur.cvars then
                 local engineVal = GetCVarBool(def.cvar)
                 if engineVal ~= nil and cur.cvars[def.cvar] ~= engineVal then
@@ -91,3 +91,36 @@ Core:SetScript("OnEvent", function(self, event, arg1, arg2)
     end
 end)
 
+-- ---------------------------------------------------------------------------
+-- Pre-rebrand version still installed (e.g. a copied Interface folder) would run twice
+-- ---------------------------------------------------------------------------
+do
+    local OLD_ADDON = "BleakfibersUnitToggles-Forever"
+    local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
+    local DisableAddOn = (C_AddOns and C_AddOns.DisableAddOn) or DisableAddOn
+
+    StaticPopupDialogs["NULLGATES_UNITTOGGLES_OLD_ADDON"] = {
+        text = "Bleakfiber's Unit Toggles is now Nullgate's Unit Toggles, and the old version is still installed. Running both loads it twice. Disable the old one now, then delete the BleakfibersUnitToggles-Forever folder from Interface\\AddOns.",
+        button1 = "Disable and Reload",
+        button2 = CANCEL,
+        OnAccept = function()
+            DisableAddOn(OLD_ADDON)
+            ReloadUI()
+        end,
+        timeout = 0,
+        whileDead = true,
+        hideOnEscape = true,
+        preferredIndex = 3,
+    }
+
+    local guard = CreateFrame("Frame")
+    guard:RegisterEvent("PLAYER_LOGIN")
+    guard:SetScript("OnEvent", function(self)
+        self:UnregisterAllEvents()
+        C_Timer.After(4, function()
+            if IsAddOnLoaded and IsAddOnLoaded(OLD_ADDON) then
+                StaticPopup_Show("NULLGATES_UNITTOGGLES_OLD_ADDON")
+            end
+        end)
+    end)
+end

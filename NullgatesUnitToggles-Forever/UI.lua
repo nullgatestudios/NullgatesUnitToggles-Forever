@@ -1,23 +1,23 @@
 --[[
-    Bleakfiber's Unit Toggles - UI.lua
+    Nullgate's Unit Toggles - UI.lua
     Presentation Layer: Dark Slate & Gold Theme, Widget Factory,
     Two-Column Canvas Layout, Quick Presets & Standalone Fallback Window
 ]]
 
 local addonName, BUT = ...
 BUT = BUT or {}
-_G["BleakfibersUnitToggles"] = BUT
+_G["NullgatesUnitToggles"] = BUT
 
-local ADDON_NAME = "BleakfibersUnitToggles"
-local FULL_TITLE = "Bleakfiber's Unit Toggles"
+local ADDON_NAME = "NullgatesUnitToggles"
+local FULL_TITLE = "Nullgate's Unit Toggles"
 
 local UI = {}
 BUT.UI = UI
-_G["BleakfibersUnitTogglesUI"] = UI
+_G["NullgatesUnitTogglesUI"] = UI
 
 local Config = setmetatable({}, {
     __index = function(_, k)
-        local c = BUT.Config or _G["BleakfibersUnitTogglesConfig"]
+        local c = BUT.Config or _G["NullgatesUnitTogglesConfig"]
         if c then return c[k] end
     end,
 })
@@ -240,12 +240,12 @@ end
 function UI:BuildOptions(parentContainer, isMasterHub)
     isMasterHub = isMasterHub or (parentContainer and parentContainer.isMasterHub) or false
 
-    local Kit = (BleakfibersAddonConfigForever and BleakfibersAddonConfigForever.UI) or self
+    local Kit = (NullgatesAddonConfigForever and NullgatesAddonConfigForever.UI) or self
 
     self.checkboxes = {}
 
     -- Create Responsive ScrollFrame inside parentContainer
-    local scrollFrame = CreateFrame("ScrollFrame", "BleakUnitTogglesScrollFrame", parentContainer, "UIPanelScrollFrameTemplate")
+    local scrollFrame = CreateFrame("ScrollFrame", "NullgateUnitTogglesScrollFrame", parentContainer, "UIPanelScrollFrameTemplate")
     scrollFrame:SetPoint("TOPLEFT", parentContainer, "TOPLEFT", 0, 0)
     scrollFrame:SetPoint("BOTTOMRIGHT", parentContainer, "BOTTOMRIGHT", -22, 0)
 
@@ -554,7 +554,7 @@ end
 function UI:CreateStandaloneWindow()
     if self.standaloneFrame then return self.standaloneFrame end
 
-    local f = CreateFrame("Frame", "BleakfibersUnitTogglesStandaloneWindow", UIParent, BACKDROP_TEMPLATE)
+    local f = CreateFrame("Frame", "NullgatesUnitTogglesStandaloneWindow", UIParent, BACKDROP_TEMPLATE)
     f:SetSize(620, 500)
     f:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
     f:SetFrameStrata("HIGH")
@@ -563,7 +563,7 @@ function UI:CreateStandaloneWindow()
     f:EnableMouse(true)
     f:SetMovable(true)
 
-    tinsert(UISpecialFrames, "BleakfibersUnitTogglesStandaloneWindow")
+    tinsert(UISpecialFrames, "NullgatesUnitTogglesStandaloneWindow")
 
     f:SetBackdrop(WINDOW_BACKDROP)
     f:SetBackdropColor(unpack(COLORS.bgSlate))

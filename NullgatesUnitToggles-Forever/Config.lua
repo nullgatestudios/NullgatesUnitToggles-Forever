@@ -1,19 +1,19 @@
 --[[
-    Bleakfiber's Unit Toggles - Config.lua
+    Nullgate's Unit Toggles - Config.lua
     Data Layer: Database Defaults, Profiles, CVar Accessors, Slash Commands & Hub Registration
 ]]
 
 local addonName, BUT = ...
 BUT = BUT or {}
-_G["BleakfibersUnitToggles"] = BUT
+_G["NullgatesUnitToggles"] = BUT
 
-local ADDON_NAME = "BleakfibersUnitToggles"
-local FULL_TITLE = "Bleakfiber's Unit Toggles"
+local ADDON_NAME = "NullgatesUnitToggles"
+local FULL_TITLE = "Nullgate's Unit Toggles"
 local DISPLAY_TITLE = "Unit Toggles"
 
 local Config = {}
 BUT.Config = Config
-_G["BleakfibersUnitTogglesConfig"] = Config
+_G["NullgatesUnitTogglesConfig"] = Config
 
 --[[-----------------------------------------------------------------------------
     CVar Catalog Definitions (20 Managed CVars)
@@ -193,30 +193,30 @@ end
     Database & Profile Management
 -------------------------------------------------------------------------------]]
 function Config:InitDB()
-    if type(BleakfibersUnitTogglesDB) ~= "table" then
-        BleakfibersUnitTogglesDB = {}
+    if type(NullgatesUnitTogglesDB) ~= "table" then
+        NullgatesUnitTogglesDB = {}
     end
-    if not BleakfibersUnitTogglesDB.activeProfile or BleakfibersUnitTogglesDB.activeProfile == "" then
-        BleakfibersUnitTogglesDB.activeProfile = "Default"
+    if not NullgatesUnitTogglesDB.activeProfile or NullgatesUnitTogglesDB.activeProfile == "" then
+        NullgatesUnitTogglesDB.activeProfile = "Default"
     end
-    if type(BleakfibersUnitTogglesDB.profiles) ~= "table" then
-        BleakfibersUnitTogglesDB.profiles = {}
+    if type(NullgatesUnitTogglesDB.profiles) ~= "table" then
+        NullgatesUnitTogglesDB.profiles = {}
     end
 
-    local activeKey = BleakfibersUnitTogglesDB.activeProfile
-    if not BleakfibersUnitTogglesDB.profiles[activeKey] then
-        BleakfibersUnitTogglesDB.profiles[activeKey] = DeepCopy(DB_DEFAULTS)
+    local activeKey = NullgatesUnitTogglesDB.activeProfile
+    if not NullgatesUnitTogglesDB.profiles[activeKey] then
+        NullgatesUnitTogglesDB.profiles[activeKey] = DeepCopy(DB_DEFAULTS)
         -- Pre-populate newly created default profile with current engine CVar values if present
         for _, def in ipairs(Config.CVAR_DEFINITIONS) do
             local currentEngineVal = GetCVarBool(def.cvar)
             if currentEngineVal ~= nil then
-                BleakfibersUnitTogglesDB.profiles[activeKey].cvars[def.cvar] = currentEngineVal
+                NullgatesUnitTogglesDB.profiles[activeKey].cvars[def.cvar] = currentEngineVal
             end
         end
     end
 
     -- Ensure all 19 cvars exist in active profile
-    local prof = BleakfibersUnitTogglesDB.profiles[activeKey]
+    local prof = NullgatesUnitTogglesDB.profiles[activeKey]
     if type(prof.cvars) ~= "table" then prof.cvars = {} end
     for _, def in ipairs(Config.CVAR_DEFINITIONS) do
         if prof.cvars[def.cvar] == nil then
@@ -226,13 +226,13 @@ function Config:InitDB()
 end
 
 function Config:GetActiveProfile()
-    return (BleakfibersUnitTogglesDB and BleakfibersUnitTogglesDB.activeProfile) or "Default"
+    return (NullgatesUnitTogglesDB and NullgatesUnitTogglesDB.activeProfile) or "Default"
 end
 
 function Config:GetProfiles()
     local list = {}
-    if BleakfibersUnitTogglesDB and BleakfibersUnitTogglesDB.profiles then
-        for name in pairs(BleakfibersUnitTogglesDB.profiles) do
+    if NullgatesUnitTogglesDB and NullgatesUnitTogglesDB.profiles then
+        for name in pairs(NullgatesUnitTogglesDB.profiles) do
             table.insert(list, name)
         end
     end
@@ -244,11 +244,11 @@ end
 function Config:SetActiveProfile(name)
     if not name or name == "" then return end
     self:InitDB()
-    if not BleakfibersUnitTogglesDB.profiles[name] then
-        local cur = BleakfibersUnitTogglesDB.profiles[BleakfibersUnitTogglesDB.activeProfile]
-        BleakfibersUnitTogglesDB.profiles[name] = DeepCopy(cur or DB_DEFAULTS)
+    if not NullgatesUnitTogglesDB.profiles[name] then
+        local cur = NullgatesUnitTogglesDB.profiles[NullgatesUnitTogglesDB.activeProfile]
+        NullgatesUnitTogglesDB.profiles[name] = DeepCopy(cur or DB_DEFAULTS)
     end
-    BleakfibersUnitTogglesDB.activeProfile = name
+    NullgatesUnitTogglesDB.activeProfile = name
 
     -- Apply all CVars for this profile to the WoW engine
     if BUT.Core and BUT.Core.ApplyAllCVars then
@@ -265,12 +265,12 @@ function Config:CreateProfile(name, fromName)
     if not name or name == "" then return end
     self:InitDB()
     -- Never overwrite existing profile!
-    if not BleakfibersUnitTogglesDB.profiles[name] then
-        local source = fromName and BleakfibersUnitTogglesDB.profiles[fromName]
+    if not NullgatesUnitTogglesDB.profiles[name] then
+        local source = fromName and NullgatesUnitTogglesDB.profiles[fromName]
         if not source then
-            source = BleakfibersUnitTogglesDB.profiles[BleakfibersUnitTogglesDB.activeProfile] or DB_DEFAULTS
+            source = NullgatesUnitTogglesDB.profiles[NullgatesUnitTogglesDB.activeProfile] or DB_DEFAULTS
         end
-        BleakfibersUnitTogglesDB.profiles[name] = DeepCopy(source)
+        NullgatesUnitTogglesDB.profiles[name] = DeepCopy(source)
     end
     self:SetActiveProfile(name)
 end
@@ -278,25 +278,25 @@ end
 function Config:SaveCurrentAs(name)
     if not name or name == "" then return end
     self:InitDB()
-    local cur = BleakfibersUnitTogglesDB.profiles[BleakfibersUnitTogglesDB.activeProfile]
-    BleakfibersUnitTogglesDB.profiles[name] = DeepCopy(cur or DB_DEFAULTS)
+    local cur = NullgatesUnitTogglesDB.profiles[NullgatesUnitTogglesDB.activeProfile]
+    NullgatesUnitTogglesDB.profiles[name] = DeepCopy(cur or DB_DEFAULTS)
     self:SetActiveProfile(name)
 end
 
 function Config:DeleteProfile(name)
     if not name or name == "Default" then return end
     self:InitDB()
-    BleakfibersUnitTogglesDB.profiles[name] = nil
-    if BleakfibersUnitTogglesDB.activeProfile == name then
+    NullgatesUnitTogglesDB.profiles[name] = nil
+    if NullgatesUnitTogglesDB.activeProfile == name then
         self:SetActiveProfile("Default")
     end
 end
 
 function Config:CopyProfile(fromName, toName)
     self:InitDB()
-    if BleakfibersUnitTogglesDB.profiles[fromName] then
-        BleakfibersUnitTogglesDB.profiles[toName] = DeepCopy(BleakfibersUnitTogglesDB.profiles[fromName])
-        if BleakfibersUnitTogglesDB.activeProfile == toName then
+    if NullgatesUnitTogglesDB.profiles[fromName] then
+        NullgatesUnitTogglesDB.profiles[toName] = DeepCopy(NullgatesUnitTogglesDB.profiles[fromName])
+        if NullgatesUnitTogglesDB.activeProfile == toName then
             if BUT.Core and BUT.Core.ApplyAllCVars then BUT.Core:ApplyAllCVars() end
             if BUT.UI and BUT.UI.Refresh then BUT.UI:Refresh() end
         end
@@ -306,8 +306,8 @@ end
 function Config:ResetProfile(name)
     name = name or self:GetActiveProfile()
     self:InitDB()
-    BleakfibersUnitTogglesDB.profiles[name] = DeepCopy(DB_DEFAULTS)
-    if BleakfibersUnitTogglesDB.activeProfile == name then
+    NullgatesUnitTogglesDB.profiles[name] = DeepCopy(DB_DEFAULTS)
+    if NullgatesUnitTogglesDB.activeProfile == name then
         if BUT.Core and BUT.Core.ApplyAllCVars then BUT.Core:ApplyAllCVars() end
         if BUT.UI and BUT.UI.Refresh then BUT.UI:Refresh() end
     end
@@ -318,7 +318,7 @@ end
 -------------------------------------------------------------------------------]]
 function Config:GetCVar(cvar)
     self:InitDB()
-    local cur = BleakfibersUnitTogglesDB.profiles[BleakfibersUnitTogglesDB.activeProfile]
+    local cur = NullgatesUnitTogglesDB.profiles[NullgatesUnitTogglesDB.activeProfile]
     if cur and cur.cvars and cur.cvars[cvar] ~= nil then
         return cur.cvars[cvar]
     end
@@ -330,7 +330,7 @@ end
 
 function Config:SetCVar(cvar, value)
     self:InitDB()
-    local cur = BleakfibersUnitTogglesDB.profiles[BleakfibersUnitTogglesDB.activeProfile]
+    local cur = NullgatesUnitTogglesDB.profiles[NullgatesUnitTogglesDB.activeProfile]
     if cur and cur.cvars then
         cur.cvars[cvar] = (value and true or false)
     end
@@ -352,7 +352,7 @@ end
 
 function Config:SetAll(value)
     self:InitDB()
-    local cur = BleakfibersUnitTogglesDB.profiles[BleakfibersUnitTogglesDB.activeProfile]
+    local cur = NullgatesUnitTogglesDB.profiles[NullgatesUnitTogglesDB.activeProfile]
     for _, def in ipairs(Config.CVAR_DEFINITIONS) do
         if cur and cur.cvars then
             cur.cvars[def.cvar] = value and true or false
@@ -364,7 +364,7 @@ end
 
 function Config:ApplyPvPPreset()
     self:InitDB()
-    local cur = BleakfibersUnitTogglesDB.profiles[BleakfibersUnitTogglesDB.activeProfile]
+    local cur = NullgatesUnitTogglesDB.profiles[NullgatesUnitTogglesDB.activeProfile]
     local pvpSettings = {
         UnitNameFriendlyPlayerName = true,
         UnitNameFriendlyPetName = false,
@@ -396,7 +396,7 @@ end
 
 function Config:ApplyBlizzardDefaults()
     self:InitDB()
-    local cur = BleakfibersUnitTogglesDB.profiles[BleakfibersUnitTogglesDB.activeProfile]
+    local cur = NullgatesUnitTogglesDB.profiles[NullgatesUnitTogglesDB.activeProfile]
     for _, def in ipairs(Config.CVAR_DEFINITIONS) do
         if cur and cur.cvars then
             cur.cvars[def.cvar] = def.default
@@ -410,11 +410,11 @@ end
     Open / Toggle Configuration Window
 -------------------------------------------------------------------------------]]
 function Config:Open(forceStandalone)
-    if not forceStandalone and BleakfibersAddonConfigForever and BleakfibersAddonConfigForever.SelectModule then
-        BleakfibersAddonConfigForever:ShowUI()
-        BleakfibersAddonConfigForever:SelectModule(ADDON_NAME)
+    if not forceStandalone and NullgatesAddonConfigForever and NullgatesAddonConfigForever.SelectModule then
+        NullgatesAddonConfigForever:ShowUI()
+        NullgatesAddonConfigForever:SelectModule(ADDON_NAME)
     else
-        local ui = BUT.UI or _G["BleakfibersUnitTogglesUI"]
+        local ui = BUT.UI or _G["NullgatesUnitTogglesUI"]
         if ui and ui.ToggleStandaloneWindow then
             ui:ToggleStandaloneWindow()
         end
@@ -424,15 +424,14 @@ end
 --[[-----------------------------------------------------------------------------
     Slash Commands
 -------------------------------------------------------------------------------]]
-SLASH_BLEAKFIBERSUNITTOGGLES1 = "/but"
-SLASH_BLEAKFIBERSUNITTOGGLES2 = "/unittoggles"
-SLASH_BLEAKFIBERSUNITTOGGLES3 = "/bleakunit"
+SLASH_NULLGATESUNITTOGGLES1 = "/nut"
+SLASH_NULLGATESUNITTOGGLES2 = "/unittoggles"
 
 local function PrintChat(msg)
-    DEFAULT_CHAT_FRAME:AddMessage("|cff3399ff[Bleakfiber's Unit Toggles]|r " .. msg)
+    DEFAULT_CHAT_FRAME:AddMessage("|cff3399ff[Nullgate's Unit Toggles]|r " .. msg)
 end
 
-SlashCmdList["BLEAKFIBERSUNITTOGGLES"] = function(msg)
+SlashCmdList["NULLGATESUNITTOGGLES"] = function(msg)
     msg = msg and string.trim and string.trim(msg:lower()) or (msg and msg:lower() or "")
     local cmd, arg = strsplit(" ", msg, 2)
     cmd = cmd or ""
@@ -483,13 +482,13 @@ SlashCmdList["BLEAKFIBERSUNITTOGGLES"] = function(msg)
             PrintChat(string.format("%s (%s) is now %s.", def.label, def.cvar, stateStr))
         else
             PrintChat("Commands:")
-            PrintChat("  /but - Open configuration hub")
-            PrintChat("  /but standalone - Open standalone window")
-            PrintChat("  /but list - Display status of all 19 CVars")
-            PrintChat("  /but all [on|off] - Toggle all CVars")
-            PrintChat("  /but pvp - Apply PvP optimized preset")
-            PrintChat("  /but <cvar> [0|1] - Toggle specific CVar")
-            PrintChat("  /but reset - Reset current profile to defaults")
+            PrintChat("  /nut - Open configuration hub")
+            PrintChat("  /nut standalone - Open standalone window")
+            PrintChat("  /nut list - Display status of all 19 CVars")
+            PrintChat("  /nut all [on|off] - Toggle all CVars")
+            PrintChat("  /nut pvp - Apply PvP optimized preset")
+            PrintChat("  /nut <cvar> [0|1] - Toggle specific CVar")
+            PrintChat("  /nut reset - Reset current profile to defaults")
         end
     end
 end
@@ -505,15 +504,15 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1)
         Config:InitDB()
     end
 
-    if arg1 == "BleakfibersAddonConfig-Forever" or arg1 == addonName then
-        if BleakfibersAddonConfigForever and BleakfibersAddonConfigForever.RegisterModule then
-            BleakfibersAddonConfigForever:RegisterModule(ADDON_NAME, {
+    if arg1 == "NullgatesAddonConfig-Forever" or arg1 == addonName then
+        if NullgatesAddonConfigForever and NullgatesAddonConfigForever.RegisterModule then
+            NullgatesAddonConfigForever:RegisterModule(ADDON_NAME, {
                 name = FULL_TITLE,
                 sidebarName = DISPLAY_TITLE,
-                author = "Bleakfiber",
-                isBleakfiber = true,
+                author = "Nullgate Studios",
+                isNullgate = true,
                 description = "Manage unit overhead name and title CVars.",
-                db = BleakfibersUnitTogglesDB,
+                db = NullgatesUnitTogglesDB,
 
                 -- Synchronized Profiles
                 profiles = {
@@ -528,12 +527,12 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1)
                 },
 
                 refresh = function()
-                    local ui = BUT.UI or _G["BleakfibersUnitTogglesUI"]
+                    local ui = BUT.UI or _G["NullgatesUnitTogglesUI"]
                     if ui and ui.Refresh then ui:Refresh() end
                 end,
 
                 buildUI = function(container, isMasterHub)
-                    local ui = BUT.UI or _G["BleakfibersUnitTogglesUI"]
+                    local ui = BUT.UI or _G["NullgatesUnitTogglesUI"]
                     if ui and ui.BuildOptions then
                         ui:BuildOptions(container, isMasterHub)
                     end
