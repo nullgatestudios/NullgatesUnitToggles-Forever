@@ -2,7 +2,8 @@
 ## Title: |cff3399ffNullgate's|r |cffffffffUnit Toggles|r - |cffffd100Forever|r
 ## Notes: Standalone unit nameplate and title CVar manager for World of Warcraft Forever.
 ## Author: Nullgate Studios
-## Version: 1.1.0
+## Version: 1.1.0
+## X-Curse-Project-ID: 1733419
 ## SavedVariables: NullgatesUnitTogglesDB
 ## OptionalDeps: NullgatesAddonConfig-Forever
 ## X-License: Restricted - Source Available (All Rights Reserved, No Derivatives)
