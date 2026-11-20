@@ -1,92 +1,96 @@
+**Nullgate's Unit Toggles** puts every overhead name and title setting in **World of Warcraft: Forever** into one simple window, so you can declutter your screen without typing `/console` commands or digging through the game's menus.
 
-**Nullgate's Unit Toggles** is a dedicated, zero-dependency CVar management suite crafted specifically for **World of Warcraft: Forever** (Interface 16001).
+Turn names on or off for players, pets, minions, guardians, totems, NPCs, critters, guild names and titles: 20 toggles in all, with one-click presets for the common setups.
 
-Tired of memorizing `/console UnitName...` commands or digging through nested default interface menus just to declutter combat nameplates? Nullgate's Unit Toggles puts all **20 native unit overhead name, pet, guardian, totem, minion, and title CVars** into an intuitive Dark Slate & Gold control center with instant visual feedback, one-click combat presets, and full profile synchronization.
-
-Runs 100% standalone out of the box with **zero required external libraries**, and automatically integrates into **Nullgate's Addon Config** when installed.
+Works on its own with **no other addons or libraries needed**, and appears inside **Nullgate's Addon Config** automatically when you have it installed.
 
 ---
 
 ## Key Highlights
 
-- **Zero External Dependencies**: Pure, lightweight native WoW Lua. No Ace3, LibSharedMedia, or external frameworks required.
-- **Complete Overhead Text Authority (20 CVars)**: Fine-grained individual toggles for friendly players, enemy players, pets, minions, guardians, totems, questgivers, critters, guild names, titles, and trivial mob suppression.
-- **Official Blizzard Defaults**: Preset defaults strictly aligned with native World of Warcraft engine configurations.
-- **Instant Visual Synchronization**: All checkboxes immediately check or uncheck the moment you click a preset, change a profile, or toggle an option.
-- **Real-Time Toggle Status Readout**: Live feedback indicator displays exactly how many toggles are active at any moment (e.g., `Active: 16 / 20 toggles enabled`).
-- **One-Click Tactical Presets**:
-  - **`[Enable All]`**: Instantly turns on all 20 unit overhead names and titles (20/20).
-  - **`[Disable All]`**: Clears screen clutter by disabling all unit overhead names (0/20).
-  - **`[PvP Preset]`**: Optimizes visibility for Battlegrounds and Arenas by enabling enemy players, pets, minions, guardians, totems, and friendly players while stripping away ambient titles and minor units.
-  - **`[Blizzard Def]`**: Restores standard factory Blizzard UI default values in one click (16/20).
-  - **`[Sync Live]`**: Reads whatever values are currently active in your game engine and stores them directly to your active profile.
-- **Bidirectional Live Sync (`CVAR_UPDATE`)**: If you change a CVar via chat or Blizzard's options, the addon automatically detects the engine event and syncs your profile and open UI in real time.
-- **Dual-Mode Architecture**:
-  - **Standalone Mode**: Opens a sleek, draggable **Dark Slate & Gold** (`#141A21` / `#D1AE47`) options window complete with title bar, close button, and standard `ESC`-key closing.
-  - **Master Hub Mode**: Seamlessly hooks into **`NullgatesAddonConfig-Forever`**, embedding its balanced two-column canvas into the unified sidebar and syncing with master global profiles.
+- **20 Toggles in One Place**: Separate switches for friendly and enemy players, pets, minions, guardians and totems, plus NPCs, critters, your own name, guild names, guild titles, PvP titles and minor mobs.
+- **One-Click Presets**:
+  - **Enable All**: every name and title on (20/20).
+  - **Disable All**: every name off, for a clean screen (0/20).
+  - **PvP Preset**: names for enemy players and their pets, minions, guardians and totems, hostile NPCs, friendly players and key friendly NPCs. Ambient names, titles and friendly pets are turned off.
+  - **Blizzard Def**: back to the game's own defaults (16/20).
+  - **Sync Live**: saves whatever the game is using right now into your profile.
+- **Always in Sync**: change a setting through chat or the game's own options and the addon picks it up straight away, including an open window.
+- **Live Count**: the window shows how many toggles are on, for example `Active: 16 / 20 toggles enabled`.
+- **Profiles**: keep different setups and switch between them.
+- **Blizzard Defaults Built In**: every toggle knows the game's default, so resetting is one click.
 
 ---
 
-## Managed CVar Catalog (All 20 Toggles)
+## All 20 Toggles
 
 ### Friendly Units
-| Control | Console Variable | Blizzard Default | Description |
+| Toggle | Game Setting | Default | Shows names for |
 | :--- | :--- | :---: | :--- |
-| **Friendly Players** | `UnitNameFriendlyPlayerName` | `1` (ON) | Overhead names for friendly player characters |
-| **Friendly Pets** | `UnitNameFriendlyPetName` | `1` (ON) | Overhead names for friendly player pets |
-| **Friendly Minions** | `UnitNameFriendlyMinionName` | `1` (ON) | Overhead names for friendly summoned minions |
-| **Friendly Guardians** | `UnitNameFriendlyGuardianName` | `1` (ON) | Overhead names for friendly guardians |
-| **Friendly Totems** | `UnitNameFriendlyTotemName` | `1` (ON) | Overhead names for friendly shaman totems |
-| **Friendly Special NPCs** | `UnitNameFriendlySpecialNPCName` | `1` (ON) | Questgivers, vendors, flight masters, and key NPCs |
+| **Friendly Players** | `UnitNameFriendlyPlayerName` | On | Friendly player characters |
+| **Friendly Pets** | `UnitNameFriendlyPetName` | On | Friendly players' pets |
+| **Friendly Minions** | `UnitNameFriendlyMinionName` | On | Friendly summoned minions |
+| **Friendly Guardians** | `UnitNameFriendlyGuardianName` | On | Friendly guardians |
+| **Friendly Totems** | `UnitNameFriendlyTotemName` | On | Friendly totems |
+| **Friendly Special NPCs** | `UnitNameFriendlySpecialNPCName` | On | Quest givers, vendors, flight masters and other key NPCs |
 
 ### NPCs & World
-| Control | Console Variable | Blizzard Default | Description |
+| Toggle | Game Setting | Default | Shows names for |
 | :--- | :--- | :---: | :--- |
-| **My Own Name** | `UnitNameOwn` | `0` (OFF) | Your character's name above your own head |
-| **All NPCs** | `UnitNameNPC` | `0` (OFF) | Overhead names for all neutral/friendly NPCs |
-| **Interactive NPCs** | `UnitNameInteractiveNPC` | `1` (ON) | Bankers, flight masters, and interaction targets |
-| **Critters & Companions** | `UnitNameNonCombatCreatureName` | `0` (OFF) | Ambient critters and non-combat vanity pets |
+| **My Own Name** | `UnitNameOwn` | Off | Your own character |
+| **All NPCs** | `UnitNameNPC` | Off | Every neutral and friendly NPC |
+| **Interactive NPCs** | `UnitNameInteractiveNPC` | On | Bankers, flight masters and other NPCs you can talk to |
+| **Critters & Companions** | `UnitNameNonCombatCreatureName` | Off | Critters and non-combat pets |
 
 ### Enemy Units
-| Control | Console Variable | Blizzard Default | Description |
+| Toggle | Game Setting | Default | Shows names for |
 | :--- | :--- | :---: | :--- |
-| **Enemy Players** | `UnitNameEnemyPlayerName` | `1` (ON) | Overhead names for enemy/hostile players |
-| **Enemy Pets** | `UnitNameEnemyPetName` | `1` (ON) | Overhead names for enemy pets |
-| **Enemy Minions** | `UnitNameEnemyMinionName` | `1` (ON) | Overhead names for enemy summoned minions |
-| **Enemy Guardians** | `UnitNameEnemyGuardianName` | `1` (ON) | Overhead names for enemy guardians |
-| **Enemy Totems** | `UnitNameEnemyTotemName` | `1` (ON) | Overhead names for enemy totems |
-| **Hostile NPCs** | `UnitNameHostleNPC` | `1` (ON) | Overhead names for hostile monsters and NPCs |
+| **Enemy Players** | `UnitNameEnemyPlayerName` | On | Enemy players |
+| **Enemy Pets** | `UnitNameEnemyPetName` | On | Enemy pets |
+| **Enemy Minions** | `UnitNameEnemyMinionName` | On | Enemy summoned minions |
+| **Enemy Guardians** | `UnitNameEnemyGuardianName` | On | Enemy guardians |
+| **Enemy Totems** | `UnitNameEnemyTotemName` | On | Enemy totems |
+| **Hostile NPCs** | `UnitNameHostleNPC` | On | Hostile monsters and NPCs |
 
 ### Guild & Titles
-| Control | Console Variable | Blizzard Default | Description |
+| Toggle | Game Setting | Default | Shows |
 | :--- | :--- | :---: | :--- |
-| **Player Guild Names** | `UnitNamePlayerGuild` | `1` (ON) | Guild names beneath character names |
-| **Player Guild Titles** | `UnitNameGuildTitle` | `1` (ON) | Guild rank and title suffixes |
-| **Player PvP Titles** | `UnitNamePlayerPVPTitle` | `1` (ON) | PvP titles and ranks on player characters |
-| **Force Hide Minor Units** | `UnitNameForceHideMinus` | `0` (OFF) | Force hide overhead names for trivial/minor mobs |
+| **Player Guild Names** | `UnitNamePlayerGuild` | On | Guild names under player names |
+| **Player Guild Titles** | `UnitNameGuildTitle` | On | Guild ranks and titles |
+| **Player PvP Titles** | `UnitNamePlayerPVPTitle` | On | PvP titles and ranks |
+| **Force Hide Minor Units** | `UnitNameForceHideMinus` | Off | Hides names of minor and trivial mobs when on |
 
 ---
 
-## Slash Commands Reference
+## Slash Commands
 
 | Command | Action |
 | :--- | :--- |
-| `/nut` or `/unittoggles` | Opens the configuration interface (Master Hub if installed, standalone window otherwise). |
-| `/nut standalone` | Forces opening the standalone options window. |
-| `/nut list` or `/nut status` | Prints the live `[ON]` / `[OFF]` status of all 20 CVars directly to your chat window. |
-| `/nut all [on\|off]` | Batch toggles all 20 unit nameplates on or off at once. |
-| `/nut pvp` | Immediately applies the optimized PvP visibility preset. |
-| `/nut <cvar> [0\|1]` | Directly toggles or sets any specific CVar from chat (e.g., `/nut UnitNameEnemyTotemName 1`). |
-| `/nut reset` | Resets the active profile back to Blizzard defaults. |
+| `/nut` or `/unittoggles` | Open the settings (inside Nullgate's Addon Config if installed, otherwise its own window). |
+| `/nut standalone` | Open its own window, even with Nullgate's Addon Config installed. |
+| `/nut list` (or `/nut status`) | Show every toggle and whether it's on, in chat. |
+| `/nut all on` / `/nut all off` | Turn every toggle on or off. |
+| `/nut pvp` | Apply the PvP preset. |
+| `/nut reset` | Reset your current profile to the defaults. |
+| `/nut <setting> [on\|off]` | Turn one toggle on or off, for example `/nut UnitNameEnemyTotemName on`. Leave out `on`/`off` to flip it. |
 
 ---
 
-## Suite Integration
+## Installation
 
-Part of **Nullgate's Addon Suite for World of Warcraft Forever**:
-- **Nullgate's Addon Config** — Unified master configuration hub and profile manager.
-- **Nullgate's Action Bars** — Modular standalone action bar suite.
-- **Nullgate's Maps** — Minimap and World Map enhancements.
-- **Nullgate's Quest Tracker** — Modular quest tracking and Wayfinder 360° navigation HUD.
-- **Nullgate's Unit Toggles** — Instant CVar nameplate and title manager.
+1. Download the latest release.
+2. Extract the `NullgatesUnitToggles-Forever` folder into the `Interface\AddOns` folder of your World of Warcraft: Forever installation.
+3. Log in and type `/nut`.
 
+---
+
+## Part of the Nullgate Addon Suite
+
+- **Nullgate's Addon Config**: one settings hub and profile manager for the whole suite.
+- **Nullgate's Action Bars**: a standalone action bar addon.
+- **Nullgate's Bags**: all-in-one bags and bank.
+- **Nullgate's Chat**: a lightweight chat upgrade.
+- **Nullgate's Maps**: minimap and world map improvements.
+- **Nullgate's Quest Tracker**: a standalone quest tracker with Wayfinder navigation.
+- **Nullgate's Blacklist**: a personal blocklist with optional community reports.
+- **Nullgate's Unit Toggles**: overhead names and titles, made simple.
