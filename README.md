@@ -1,166 +1,114 @@
 # Nullgate's Unit Toggles - Forever
 
 [![Interface](https://img.shields.io/badge/Interface-16001%20(WoW%20Forever)-0078D7.svg?style=flat-square)](https://github.com/nullgatestudios/NullgatesUnitToggles-Forever)
-[![Release](https://img.shields.io/badge/Release-v1.0.6-ffd100.svg?style=flat-square)](https://github.com/nullgatestudios/NullgatesUnitToggles-Forever/releases)
+[![Release](https://img.shields.io/badge/Release-v1.1.1-ffd100.svg?style=flat-square)](https://github.com/nullgatestudios/NullgatesUnitToggles-Forever/releases)
 [![License](https://img.shields.io/badge/License-Source--Available-crimson.svg?style=flat-square)](LICENSE.md)
-[![Dependencies](https://img.shields.io/badge/Dependencies-Zero%20External-2ea44f.svg?style=flat-square)](https://github.com/nullgatestudios/NullgatesUnitToggles-Forever)
-[![Suite](https://img.shields.io/badge/Suite-Nullgate's%20Addon%20Suite-8a2be2.svg?style=flat-square)](https://github.com/nullgatestudios)
+[![Dependencies](https://img.shields.io/badge/Dependencies-None-2ea44f.svg?style=flat-square)](https://github.com/nullgatestudios/NullgatesUnitToggles-Forever)
 
-**Nullgate's Unit Toggles** is a high-performance, standalone unit name and nameplate CVar manager built specifically for **World of Warcraft: Forever** (Interface 16001).
+**Nullgate's Unit Toggles** puts every overhead name and title setting in **World of Warcraft: Forever** into one simple window, so you can declutter your screen without typing `/console` commands or digging through the game's menus.
 
-Engineered to replace cumbersome macro scripts and deeply buried interface options, it delivers an instant, draggable **Dark Slate & Gold** control panel with 20 granular Blizzard CVars, quick-switch presets (PvP, PvE/Raid, Screenshot, Questing), an official Blizzard Defaults restoration button, and complete profile synchronization with the **Nullgate Addon Suite**.
+Turn names on or off for players, pets, minions, guardians, totems, NPCs, critters, guild names and titles: 20 toggles in all, with one-click presets for the common setups.
 
-Runs **100% standalone out of the box** with zero required third-party libraries or addons.
-
----
-
-## 📑 Table of Contents
-
-- [Key Highlights](#-key-highlights)
-- [Feature Showcase](#-feature-showcase)
-  - [1. 20 Granular Blizzard CVar Toggles](#1-20-granular-blizzard-cvar-toggles)
-  - [2. One-Click Situational Presets](#2-one-click-situational-presets)
-  - [3. Official Blizzard Defaults Restoration](#3-official-blizzard-defaults-restoration)
-  - [4. Standalone Draggable HUD Panel](#4-standalone-draggable-hud-panel)
-  - [5. Instant Live CVar Synchronization](#5-instant-live-cvar-synchronization)
-  - [6. Master Hub & Profile Sync](#6-master-hub--profile-sync)
-- [Interactive Controls & Mouse Shortcuts](#-interactive-controls--mouse-shortcuts)
-- [Configuration Guide](#-configuration-guide)
-- [Slash Commands Reference](#-slash-commands-reference)
-- [Architecture & File Overview](#-architecture--file-overview)
-- [Installation Guide](#-installation-guide)
-- [Nullgate Addon Suite Ecosystem](#-nullgate-addon-suite-ecosystem)
-- [License & Support](#-license--support)
+Works on its own with **no other addons or libraries needed**, and appears inside **Nullgate's Addon Config** automatically when you have it installed.
 
 ---
 
-## 🌟 Key Highlights
+## Key Highlights
 
-* **Pure Standalone Power**: Zero external dependencies. Self-contained CVar engine operates directly on native Blizzard Console Variables.
-* **20 Granular CVar Controls**: Complete control over player names, NPC names, guild titles, honor titles, pets, minions, totems, and nameplates.
-* **One-Click Presets**: Switch instantly between specialized presets for PvP Arenas/Battlegrounds, PvE Raids, Questing, and Clean UI Screenshots.
-* **Official Blizzard Defaults**: One-click restoration button cleanly resets all unit CVars back to Blizzard factory defaults.
-* **Compact Floating Control Panel**: Draggable, lockable standalone window styled in signature Dark Slate & Gold.
-* **Non-Destructive Profile Capture**: Instant profile synchronization with `NullgatesAddonConfig-Forever` that captures active settings upon profile creation.
-
----
-
-## 🎯 Feature Showcase
-
-### 1. 20 Granular Blizzard CVar Toggles
-Direct, high-performance toggles for all unit display settings:
-- **Player Names**: Friendly Player Names, Enemy Player Names.
-- **NPC Names**: Friendly NPC Names, Enemy NPC Names.
-- **Titles & Guilds**: Player Titles, Guild Names, Guild Titles.
-- **Sub-Units**: Pets, Minions, Guardians, and Totems.
-- **Nameplates**: Friendly Nameplates, Enemy Nameplates, Nameplate Motion Type (Overlapping vs. Stacking), and Castbars on Nameplates.
-- **Visibility Conditions**: Combat-only nameplates, In-Combat names, and Target-only highlights.
-
-### 2. One-Click Situational Presets
-Adapt your interface to any gameplay scenario in a fraction of a second:
-- **PvP Mode**: Highlights enemy player names and nameplates while suppressing friendly clutter and NPC titles.
-- **PvE / Raid Mode**: Stacks enemy nameplates with castbars enabled, showing friendly names without cluttering screen space.
-- **Questing Mode**: Shows friendly NPC names and enemy targets for easy questgiver and mob identification.
-- **Clean Screenshot Mode**: Instantly hides all unit text and nameplates for pristine UI captures.
-
-### 3. Official Blizzard Defaults Restoration
-Safe experimentation with zero risk:
-- Click the **[Blizzard Defaults]** button at any time to immediately revert all 20 managed CVars back to original client defaults.
-- No need to delete WTF folders or guess default console variables.
-
-### 4. Standalone Draggable HUD Panel
-Convenient on-screen access:
-- Sleek floating window accessible via `/nut` or `/unittoggles`.
-- Drag by header to place anywhere on your screen. Position persists across sessions.
-- Optional auto-close or persistent on-screen positioning.
-
-### 5. Instant Live CVar Synchronization
-Always accurate:
-- Listens for CVar state changes triggered externally (via keybinds or game menus).
-- Checkbox indicators and toggle switches update instantly to reflect true active game engine state.
-
-### 6. Master Hub & Profile Sync
-Full integration into `NullgatesAddonConfig-Forever`:
-- Embedded directly within the BAC master hub sidebar.
-- Non-destructive profile creation that clones current CVar profiles instead of wiping to factory defaults.
-- Synchronized profile switching across all Nullgate addons.
+- **20 Toggles in One Place**: Separate switches for friendly and enemy players, pets, minions, guardians and totems, plus NPCs, critters, your own name, guild names, guild titles, PvP titles and minor mobs.
+- **One-Click Presets**:
+  - **Enable All**: every name and title on (20/20).
+  - **Disable All**: every name off, for a clean screen (0/20).
+  - **PvP Preset**: names for enemy players and their pets, minions, guardians and totems, hostile NPCs, friendly players and key friendly NPCs. Ambient names, titles and friendly pets are turned off.
+  - **Blizzard Def**: back to the game's own defaults (16/20).
+  - **Sync Live**: saves whatever the game is using right now into your profile.
+- **Always in Sync**: change a setting through chat or the game's own options and the addon picks it up straight away, including an open window.
+- **Live Count**: the window shows how many toggles are on, for example `Active: 16 / 20 toggles enabled`.
+- **Profiles**: keep different setups and switch between them.
+- **Blizzard Defaults Built In**: every toggle knows the game's default, so resetting is one click.
 
 ---
 
-## 🖱️ Interactive Controls & Mouse Shortcuts
+## All 20 Toggles
 
-| Action | Description |
+### Friendly Units
+| Toggle | Game Setting | Default | Shows names for |
+| :--- | :--- | :---: | :--- |
+| **Friendly Players** | `UnitNameFriendlyPlayerName` | On | Friendly player characters |
+| **Friendly Pets** | `UnitNameFriendlyPetName` | On | Friendly players' pets |
+| **Friendly Minions** | `UnitNameFriendlyMinionName` | On | Friendly summoned minions |
+| **Friendly Guardians** | `UnitNameFriendlyGuardianName` | On | Friendly guardians |
+| **Friendly Totems** | `UnitNameFriendlyTotemName` | On | Friendly totems |
+| **Friendly Special NPCs** | `UnitNameFriendlySpecialNPCName` | On | Quest givers, vendors, flight masters and other key NPCs |
+
+### NPCs & World
+| Toggle | Game Setting | Default | Shows names for |
+| :--- | :--- | :---: | :--- |
+| **My Own Name** | `UnitNameOwn` | Off | Your own character |
+| **All NPCs** | `UnitNameNPC` | Off | Every neutral and friendly NPC |
+| **Interactive NPCs** | `UnitNameInteractiveNPC` | On | Bankers, flight masters and other NPCs you can talk to |
+| **Critters & Companions** | `UnitNameNonCombatCreatureName` | Off | Critters and non-combat pets |
+
+### Enemy Units
+| Toggle | Game Setting | Default | Shows names for |
+| :--- | :--- | :---: | :--- |
+| **Enemy Players** | `UnitNameEnemyPlayerName` | On | Enemy players |
+| **Enemy Pets** | `UnitNameEnemyPetName` | On | Enemy pets |
+| **Enemy Minions** | `UnitNameEnemyMinionName` | On | Enemy summoned minions |
+| **Enemy Guardians** | `UnitNameEnemyGuardianName` | On | Enemy guardians |
+| **Enemy Totems** | `UnitNameEnemyTotemName` | On | Enemy totems |
+| **Hostile NPCs** | `UnitNameHostleNPC` | On | Hostile monsters and NPCs |
+
+### Guild & Titles
+| Toggle | Game Setting | Default | Shows |
+| :--- | :--- | :---: | :--- |
+| **Player Guild Names** | `UnitNamePlayerGuild` | On | Guild names under player names |
+| **Player Guild Titles** | `UnitNameGuildTitle` | On | Guild ranks and titles |
+| **Player PvP Titles** | `UnitNamePlayerPVPTitle` | On | PvP titles and ranks |
+| **Force Hide Minor Units** | `UnitNameForceHideMinus` | Off | Hides names of minor and trivial mobs when on |
+
+---
+
+## Slash Commands
+
+| Command | Action |
 | :--- | :--- |
-| **`/nut` or `/unittoggles`** | Toggles the standalone Unit Toggles control panel. |
-| **Click Preset Button** | Instantly applies the selected preset (PvP, PvE, Screenshot, Questing). |
-| **Click [Blizzard Defaults]** | Resets all managed unit CVars back to official Blizzard default values. |
-| **Drag Header** | Repositions the control panel on screen. |
+| `/nut` or `/unittoggles` | Open the settings (inside Nullgate's Addon Config if installed, otherwise its own window). |
+| `/nut standalone` | Open its own window, even with Nullgate's Addon Config installed. |
+| `/nut list` (or `/nut status`) | Show every toggle and whether it's on, in chat. |
+| `/nut all on` / `/nut all off` | Turn every toggle on or off. |
+| `/nut pvp` | Apply the PvP preset. |
+| `/nut reset` | Reset your current profile to the defaults. |
+| `/nut <setting> [on\|off]` | Turn one toggle on or off, for example `/nut UnitNameEnemyTotemName on`. Leave out `on`/`off` to flip it. |
 
 ---
 
-## 🛠️ Configuration Guide
-
-Access settings via `/nut`, `/unittoggles`, or through `/nac`:
-
-1. **Preset Toolbar**: Quick-select buttons for PvP, PvE/Raid, Questing, and Screenshot profiles, plus the Blizzard Defaults restore button.
-2. **Unit Names**: Checkboxes for Friendly Players, Enemy Players, Friendly NPCs, and Enemy NPCs.
-3. **Identity Details**: Checkboxes for Guild Names, Guild Titles, and Player Titles.
-4. **Pets & Totems**: Checkboxes for Friendly/Enemy Pets, Minions, Totems, and Guardians.
-5. **Nameplate Settings**: Checkboxes for Friendly/Enemy Nameplates, Stacking vs. Overlapping motion, and Nameplate Castbars.
-6. **Profiles**: Create, copy, delete, and switch configurations with full Nullgate Addon Suite synchronization.
-
 ---
 
-## ⌨️ Slash Commands Reference
-
-| Command | Description |
-| :--- | :--- |
-| `/nut` | Toggles the Unit Toggles graphical control panel. |
-| `/unittoggles` | Alternative shortcut to toggle the control panel. |
-| `/nut reset` | Reverts all managed CVars back to Blizzard defaults. |
-| `/nut profile <name>` | Switches active profile or prints current profile name. |
-
----
-
-## 🏗️ Architecture & File Overview
+## Files
 
 ```
 NullgatesUnitToggles-Forever/
-├── NullgatesUnitToggles-Forever.toc  # Addon metadata, SavedVariables & manifest
-├── Config.lua                          # CVar definitions, presets schema & BAC registration
-├── Core.lua                            # CVar read/write engine, event listeners & synchronization
-└── UI.lua                              # Native Dark Slate & Gold panel & preset toolbar
+├── NullgatesUnitToggles-Forever.toc   # Addon metadata and SavedVariables (NullgatesUnitTogglesDB)
+├── Config.lua                         # The 20 settings, presets, profiles, slash commands, Addon Config registration
+├── Core.lua                           # Applies settings and listens for changes made elsewhere
+└── UI.lua                             # The settings window and preset buttons
 ```
 
----
-
-## 💾 Installation Guide
-
-1. Download the latest release package from the official [Releases](https://github.com/nullgatestudios/NullgatesUnitToggles-Forever/releases) page.
-2. Exit World of Warcraft completely.
-3. Extract the downloaded archive (`NullgatesUnitToggles-Forever 1.0.6.zip`).
-4. Copy the `NullgatesUnitToggles-Forever` folder into your WoW client AddOns directory:
-   ```
-   World of Warcraft/_forever_/Interface/AddOns/NullgatesUnitToggles-Forever
-   ```
-5. Launch World of Warcraft, log into your character, and type `/nut` to open the control panel.
+No third-party libraries are bundled.
 
 ---
 
-## 🌌 Nullgate Addon Suite Ecosystem
+## Installation
 
-Nullgate's Unit Toggles integrates seamlessly with the entire **Nullgate Addon Suite**:
-
-* **[Nullgate's Addon Config](https://github.com/nullgatestudios/NullgatesAddonConfig-Forever)**: Centralized master configuration hub with unified mover mode and cross-addon profile syncing.
-* **[Nullgate's Action Bars](https://github.com/nullgatestudios/NullgatesActionBars-Forever)**: Minimalist action bar suite with bags container, totem bars, and cooldown pulse.
-* **[Nullgate's Quest Tracker](https://github.com/nullgatestudios/NullgatesQuestTracker-Forever)**: High-performance quest tracker with 360° Wayfinder navigation and interactive quest items.
-* **[Nullgate's Maps](https://github.com/nullgatestudios/NullgatesMaps-Forever)**: Lightweight world map and minimap customization suite.
+1. Download the latest release from CurseForge or the [GitHub releases](https://github.com/nullgatestudios/NullgatesUnitToggles-Forever/releases) page.
+2. Extract the `NullgatesUnitToggles-Forever` folder into the `Interface\AddOns` folder of your World of Warcraft: Forever installation.
+3. Log in and type `/nut`.
 
 ---
 
-## 📜 License & Support
+## License & Support
 
-* **License**: Restricted - Source-Available (All Rights Reserved, No Derivatives). See [LICENSE.md](LICENSE.md) for full terms.
-* **Issues & Feedback**: Encounter a bug or have a feature request? Open an issue on our [GitHub Issue Tracker](https://github.com/nullgatestudios/NullgatesUnitToggles-Forever/issues).
-* **Author**: Nullgate
-
+- **License**: Restricted - Source-Available (All Rights Reserved, No Derivatives). See [LICENSE.md](LICENSE.md) for the full terms.
+- **Issues & feedback**: open an issue on the [GitHub issue tracker](https://github.com/nullgatestudios/NullgatesUnitToggles-Forever/issues).
+- **Author**: Nullgate Studios
