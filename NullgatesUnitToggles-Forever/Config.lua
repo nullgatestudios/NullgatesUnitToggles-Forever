@@ -6,6 +6,7 @@
 local addonName, BUT = ...
 BUT = BUT or {}
 _G["NullgatesUnitToggles"] = BUT
+local L = BUT.L
 
 local ADDON_NAME = "NullgatesUnitToggles"
 local FULL_TITLE = "Nullgate's Unit Toggles"
@@ -25,42 +26,42 @@ Config.CVAR_DEFINITIONS = {
         label = "Friendly Players",
         category = "friendly",
         default = true,
-        tooltip = "Show overhead names for friendly player characters.\n\nCVar: UnitNameFriendlyPlayerName (0|1)"
+        tooltip = "Show overhead names for friendly player characters."
     },
     {
         cvar = "UnitNameFriendlyPetName",
         label = "Friendly Pets",
         category = "friendly",
         default = true,
-        tooltip = "Show overhead names for friendly player pets.\n\nCVar: UnitNameFriendlyPetName (0|1)"
+        tooltip = "Show overhead names for friendly player pets."
     },
     {
         cvar = "UnitNameFriendlyMinionName",
         label = "Friendly Minions",
         category = "friendly",
         default = true,
-        tooltip = "Show overhead names for friendly player minions and summoned units.\n\nCVar: UnitNameFriendlyMinionName (0|1)"
+        tooltip = "Show overhead names for friendly player minions and summoned units."
     },
     {
         cvar = "UnitNameFriendlyGuardianName",
         label = "Friendly Guardians",
         category = "friendly",
         default = true,
-        tooltip = "Show overhead names for friendly guardians.\n\nCVar: UnitNameFriendlyGuardianName (0|1)"
+        tooltip = "Show overhead names for friendly guardians."
     },
     {
         cvar = "UnitNameFriendlyTotemName",
         label = "Friendly Totems",
         category = "friendly",
         default = true,
-        tooltip = "Show overhead names for friendly totems.\n\nCVar: UnitNameFriendlyTotemName (0|1)"
+        tooltip = "Show overhead names for friendly totems."
     },
     {
         cvar = "UnitNameFriendlySpecialNPCName",
         label = "Friendly Special NPCs",
         category = "friendly",
         default = true,
-        tooltip = "Show overhead names for questgivers, vendors, flight masters, and special NPCs.\n\nCVar: UnitNameFriendlySpecialNPCName (0|1)"
+        tooltip = "Show overhead names for questgivers, vendors, flight masters, and special NPCs."
     },
 
     -- Category 2: NPCs & World
@@ -69,28 +70,28 @@ Config.CVAR_DEFINITIONS = {
         label = "My Own Name",
         category = "npc",
         default = false,
-        tooltip = "Show your own character name above your head.\n\nCVar: UnitNameOwn (0|1)"
+        tooltip = "Show your own character name above your head."
     },
     {
         cvar = "UnitNameNPC",
         label = "All NPCs",
         category = "npc",
         default = false,
-        tooltip = "Show overhead names for all NPCs regardless of reaction.\n\nCVar: UnitNameNPC (0|1)"
+        tooltip = "Show overhead names for all NPCs regardless of reaction."
     },
     {
         cvar = "UnitNameInteractiveNPC",
         label = "Interactive NPCs",
         category = "npc",
         default = true,
-        tooltip = "Show overhead names for interactive NPCs (bankers, flight masters, innkeepers).\n\nCVar: UnitNameInteractiveNPC (0|1)"
+        tooltip = "Show overhead names for interactive NPCs (bankers, flight masters, innkeepers)."
     },
     {
         cvar = "UnitNameNonCombatCreatureName",
         label = "Critters & Companions",
         category = "npc",
         default = false,
-        tooltip = "Show overhead names for critters and non-combat pets.\n\nCVar: UnitNameNonCombatCreatureName (0|1)"
+        tooltip = "Show overhead names for critters and non-combat pets."
     },
 
     -- Category 3: Enemy Units
@@ -99,42 +100,42 @@ Config.CVAR_DEFINITIONS = {
         label = "Enemy Players",
         category = "enemy",
         default = true,
-        tooltip = "Show overhead names for hostile/enemy player characters.\n\nCVar: UnitNameEnemyPlayerName (0|1)"
+        tooltip = "Show overhead names for hostile/enemy player characters."
     },
     {
         cvar = "UnitNameEnemyPetName",
         label = "Enemy Pets",
         category = "enemy",
         default = true,
-        tooltip = "Show overhead names for hostile/enemy player pets.\n\nCVar: UnitNameEnemyPetName (0|1)"
+        tooltip = "Show overhead names for hostile/enemy player pets."
     },
     {
         cvar = "UnitNameEnemyMinionName",
         label = "Enemy Minions",
         category = "enemy",
         default = true,
-        tooltip = "Show overhead names for hostile/enemy player minions and summoned units.\n\nCVar: UnitNameEnemyMinionName (0|1)"
+        tooltip = "Show overhead names for hostile/enemy player minions and summoned units."
     },
     {
         cvar = "UnitNameEnemyGuardianName",
         label = "Enemy Guardians",
         category = "enemy",
         default = true,
-        tooltip = "Show overhead names for hostile/enemy guardians.\n\nCVar: UnitNameEnemyGuardianName (0|1)"
+        tooltip = "Show overhead names for hostile/enemy guardians."
     },
     {
         cvar = "UnitNameEnemyTotemName",
         label = "Enemy Totems",
         category = "enemy",
         default = true,
-        tooltip = "Show overhead names for hostile/enemy totems.\n\nCVar: UnitNameEnemyTotemName (0|1)"
+        tooltip = "Show overhead names for hostile/enemy totems."
     },
     {
         cvar = "UnitNameHostleNPC",
         label = "Hostile NPCs",
         category = "enemy",
         default = true,
-        tooltip = "Show overhead names for hostile NPCs and monsters.\n\nCVar: UnitNameHostleNPC (0|1)"
+        tooltip = "Show overhead names for hostile NPCs and monsters."
     },
 
     -- Category 4: Guild & Titles
@@ -143,28 +144,28 @@ Config.CVAR_DEFINITIONS = {
         label = "Player Guild Names",
         category = "player",
         default = true,
-        tooltip = "Show guild names under player character names.\n\nCVar: UnitNamePlayerGuild (0|1)"
+        tooltip = "Show guild names under player character names."
     },
     {
         cvar = "UnitNameGuildTitle",
         label = "Player Guild Titles",
         category = "player",
         default = true,
-        tooltip = "Show guild ranks/titles on player characters.\n\nCVar: UnitNameGuildTitle (0|1)"
+        tooltip = "Show guild ranks/titles on player characters."
     },
     {
         cvar = "UnitNamePlayerPVPTitle",
         label = "Player PvP Titles",
         category = "player",
         default = true,
-        tooltip = "Show PvP titles and ranks on player characters.\n\nCVar: UnitNamePlayerPVPTitle (0|1)"
+        tooltip = "Show PvP titles and ranks on player characters."
     },
     {
         cvar = "UnitNameForceHideMinus",
         label = "Force Hide Minor Units",
         category = "player",
         default = false,
-        tooltip = "Force hide overhead names for trivial/minor ('minus') units.\n\nCVar: UnitNameForceHideMinus (0|1)"
+        tooltip = "Force hide overhead names for trivial/minor ('minus') units."
     },
 }
 
@@ -443,29 +444,29 @@ SlashCmdList["NULLGATESUNITTOGGLES"] = function(msg)
         Config:Open(true)
     elseif cmd == "reset" then
         Config:ResetProfile()
-        PrintChat("Reset profile '|cffffd100" .. Config:GetActiveProfile() .. "|r' to defaults.")
+        PrintChat(string.format(L["Reset profile '%s' to defaults."], "|cffffd100" .. Config:GetActiveProfile() .. "|r"))
     elseif cmd == "pvp" then
         Config:ApplyPvPPreset()
-        PrintChat("Applied PvP preset.")
+        PrintChat(L["Applied PvP preset."])
     elseif cmd == "all" or cmd == "enableall" then
         if arg == "0" or arg == "off" then
             Config:SetAll(false)
-            PrintChat("All 20 unit toggles set to |cffff2222OFF|r.")
+            PrintChat(string.format(L["All %d unit toggles set to %s."], #Config.CVAR_DEFINITIONS, "|cffff2222" .. L["OFF"] .. "|r"))
         else
             Config:SetAll(true)
-            PrintChat("All 20 unit toggles set to |cff22ff22ON|r.")
+            PrintChat(string.format(L["All %d unit toggles set to %s."], #Config.CVAR_DEFINITIONS, "|cff22ff22" .. L["ON"] .. "|r"))
         end
     elseif cmd == "disableall" then
         Config:SetAll(false)
-        PrintChat("All 20 unit toggles set to |cffff2222OFF|r.")
+        PrintChat(string.format(L["All %d unit toggles set to %s."], #Config.CVAR_DEFINITIONS, "|cffff2222" .. L["OFF"] .. "|r"))
     elseif cmd == "check" then
         BUT.Check.Run()
     elseif cmd == "list" or cmd == "status" then
-        PrintChat("Current Unit CVar Status (Profile: |cffffd100" .. Config:GetActiveProfile() .. "|r):")
+        PrintChat(string.format(L["Current unit name settings (profile: %s):"], "|cffffd100" .. Config:GetActiveProfile() .. "|r"))
         for _, def in ipairs(Config.CVAR_DEFINITIONS) do
             local state = Config:GetCVar(def.cvar)
-            local stateStr = state and "|cff22ff22[ON]|r" or "|cffff2222[OFF]|r"
-            DEFAULT_CHAT_FRAME:AddMessage(string.format("  %s %s (|cff888888%s|r)", stateStr, def.label, def.cvar))
+            local stateStr = state and ("|cff22ff22[" .. L["ON"] .. "]|r") or ("|cffff2222[" .. L["OFF"] .. "]|r")
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("  %s %s (|cff888888%s|r)", stateStr, L[def.label], def.cvar))
         end
     else
         -- Check if cmd matches a CVar name
@@ -480,18 +481,18 @@ SlashCmdList["NULLGATESUNITTOGGLES"] = function(msg)
                 newVal = not Config:GetCVar(def.cvar)
             end
             Config:SetCVar(def.cvar, newVal)
-            local stateStr = newVal and "|cff22ff22ON|r" or "|cffff2222OFF|r"
-            PrintChat(string.format("%s (%s) is now %s.", def.label, def.cvar, stateStr))
+            local stateStr = newVal and ("|cff22ff22" .. L["ON"] .. "|r") or ("|cffff2222" .. L["OFF"] .. "|r")
+            PrintChat(string.format(L["%s (%s) is now %s."], L[def.label], def.cvar, stateStr))
         else
-            PrintChat("Commands:")
-            PrintChat("  /nut - Open configuration hub")
-            PrintChat("  /nut standalone - Open standalone window")
-            PrintChat("  /nut list - Display status of all 20 CVars")
-            PrintChat("  /nut all [on|off] - Toggle all CVars")
-            PrintChat("  /nut pvp - Apply PvP optimized preset")
-            PrintChat("  /nut <cvar> [0|1] - Toggle specific CVar")
-            PrintChat("  /nut reset - Reset current profile to defaults")
-            PrintChat("  /nut check - Test the addon and open a bug report to copy")
+            PrintChat(L["Commands:"])
+            PrintChat("  /nut - " .. L["Open configuration hub"])
+            PrintChat("  /nut standalone - " .. L["Open standalone window"])
+            PrintChat("  /nut list - " .. L["Display status of all 20 CVars"])
+            PrintChat("  /nut all [on|off] - " .. L["Toggle all CVars"])
+            PrintChat("  /nut pvp - " .. L["Apply PvP optimized preset"])
+            PrintChat("  /nut <cvar> [0|1] - " .. L["Toggle specific CVar"])
+            PrintChat("  /nut reset - " .. L["Reset current profile to defaults"])
+            PrintChat("  /nut check - " .. L["Test the addon and open a bug report to copy"])
         end
     end
 end
@@ -514,7 +515,7 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1)
                 sidebarName = DISPLAY_TITLE,
                 author = "Nullgate Studios",
                 isNullgate = true,
-                description = "Manage unit overhead name and title CVars.",
+                description = L["Manage unit overhead name and title CVars."],
                 db = NullgatesUnitTogglesDB,
 
                 -- Synchronized Profiles

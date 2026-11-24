@@ -6,6 +6,7 @@
 local addonName, BUT = ...
 BUT = BUT or {}
 _G["NullgatesUnitToggles"] = BUT
+local L = BUT.L
 
 local Core = CreateFrame("Frame", "NullgatesUnitTogglesCore")
 BUT.Core = Core
@@ -100,8 +101,8 @@ do
     local DisableAddOn = (C_AddOns and C_AddOns.DisableAddOn) or DisableAddOn
 
     StaticPopupDialogs["NULLGATES_UNITTOGGLES_OLD_ADDON"] = {
-        text = "Bleakfiber's Unit Toggles is now Nullgate's Unit Toggles, and the old version is still installed. Running both loads it twice. Disable the old one now, then delete the BleakfibersUnitToggles-Forever folder from Interface\\AddOns.",
-        button1 = "Disable and Reload",
+        text = L["Bleakfiber's Unit Toggles is now Nullgate's Unit Toggles, and the old version is still installed. Running both loads it twice. Disable the old one now, then delete the BleakfibersUnitToggles-Forever folder from Interface\\AddOns."],
+        button1 = L["Disable and Reload"],
         button2 = CANCEL,
         OnAccept = function()
             DisableAddOn(OLD_ADDON)

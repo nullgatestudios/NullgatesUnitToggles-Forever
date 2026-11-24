@@ -7,6 +7,7 @@
 local addonName, BUT = ...
 BUT = BUT or {}
 _G["NullgatesUnitToggles"] = BUT
+local L = BUT.L
 
 local ADDON_NAME = "NullgatesUnitToggles"
 local FULL_TITLE = "Nullgate's Unit Toggles"
@@ -216,7 +217,7 @@ function UI:Refresh(customStatusMsg)
     -- Update active status readout
     if self.statusText then
         if customStatusMsg then
-            self.statusText:SetText(customStatusMsg)
+            self.statusText:SetText(string.format("%s (%d / %d)", customStatusMsg, activeCount, totalCount))
         else
             local statusColor = "|cffffd100"
             if activeCount == totalCount then
@@ -224,13 +225,13 @@ function UI:Refresh(customStatusMsg)
             elseif activeCount == 0 then
                 statusColor = "|cffff2222"
             end
-            self.statusText:SetText(string.format("%sActive: %d / %d toggles enabled|r", statusColor, activeCount, totalCount))
+            self.statusText:SetText(statusColor .. string.format(L["Active: %d / %d toggles enabled"], activeCount, totalCount) .. "|r")
         end
     end
 
     -- Update profile title if in standalone mode
     if self.profileLabel then
-        self.profileLabel:SetText("Profile: |cffffd100" .. Config:GetActiveProfile() .. "|r")
+        self.profileLabel:SetText(string.format(L["Profile: %s"], "|cffffd100" .. Config:GetActiveProfile() .. "|r"))
     end
 end
 
@@ -265,51 +266,59 @@ function UI:BuildOptions(parentContainer, isMasterHub)
 
         profileLabel = scrollChild:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
         profileLabel:SetPoint("TOPRIGHT", scrollChild, "TOPRIGHT", -16, -18)
-        profileLabel:SetText("Profile: |cffffd100" .. Config:GetActiveProfile() .. "|r")
+        profileLabel:SetText(string.format(L["Profile: %s"], "|cffffd100" .. Config:GetActiveProfile() .. "|r"))
         self.profileLabel = profileLabel
     end
 
     -- Preset Buttons
-    local btnAllOn = Kit:CreateButton(scrollChild, "BUT_BtnAllOn", "Enable All", 16, 0, 78, 22, function()
+    -- Translated labels can be longer than English: each button grows to fit its text.
+    local function FitButton(btn, minWidth)
+        local label = btn and (btn.label or (btn.GetFontString and btn:GetFontString()))
+        local width = label and label.GetStringWidth and label:GetStringWidth()
+        if type(width) == "number" and width + 16 > minWidth then btn:SetWidth(width + 16) end
+        return btn
+    end
+
+    local btnAllOn = FitButton(Kit:CreateButton(scrollChild, "BUT_BtnAllOn", L["Enable All"], 16, 0, 78, 22, function()
         Config:SetAll(true)
-        UI:Refresh("|cff22ff22Preset: All Enabled (20/20)|r")
-    end)
+        UI:Refresh("|cff22ff22" .. L["All enabled"] .. "|r")
+    end), 78)
 
-    local btnAllOff = Kit:CreateButton(scrollChild, "BUT_BtnAllOff", "Disable All", 16, 0, 78, 22, function()
+    local btnAllOff = FitButton(Kit:CreateButton(scrollChild, "BUT_BtnAllOff", L["Disable All"], 16, 0, 78, 22, function()
         Config:SetAll(false)
-        UI:Refresh("|cffff2222Preset: All Disabled (0/20)|r")
-    end)
+        UI:Refresh("|cffff2222" .. L["All disabled"] .. "|r")
+    end), 78)
 
-    local btnPvP = Kit:CreateButton(scrollChild, "BUT_BtnPvP", "PvP Preset", 16, 0, 78, 22, function()
+    local btnPvP = FitButton(Kit:CreateButton(scrollChild, "BUT_BtnPvP", L["PvP Preset"], 16, 0, 78, 22, function()
         Config:ApplyPvPPreset()
-        UI:Refresh("|cffffd100Preset: PvP Configuration Applied (8/20)|r")
-    end)
+        UI:Refresh("|cffffd100" .. L["PvP preset applied"] .. "|r")
+    end), 78)
 
-    local btnDefaults = Kit:CreateButton(scrollChild, "BUT_BtnDefaults", "Blizzard Def", 16, 0, 86, 22, function()
+    local btnDefaults = FitButton(Kit:CreateButton(scrollChild, "BUT_BtnDefaults", L["Blizzard Defaults"], 16, 0, 86, 22, function()
         Config:ApplyBlizzardDefaults()
-        UI:Refresh("|cff3399ffPreset: Blizzard Defaults Restored (16/20)|r")
-    end)
+        UI:Refresh("|cff3399ff" .. L["Blizzard defaults restored"] .. "|r")
+    end), 86)
 
-    local btnSync = Kit:CreateButton(scrollChild, "BUT_BtnSync", "Sync Live", 16, 0, 74, 22, function()
+    local btnSync = FitButton(Kit:CreateButton(scrollChild, "BUT_BtnSync", L["Sync Live"], 16, 0, 74, 22, function()
         if BUT.Core and BUT.Core.SyncFromEngine then
             BUT.Core:SyncFromEngine()
         end
-        UI:Refresh("|cffffd100Synchronized with live game engine|r")
-    end)
+        UI:Refresh("|cffffd100" .. L["Synced with the game's current settings"] .. "|r")
+    end), 74)
 
     -- Status readout line below presets
     local statusText = scrollChild:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    statusText:SetText("Active: 0 / 20 toggles enabled")
+    statusText:SetText(string.format(L["Active: %d / %d toggles enabled"], 0, #Config.CVAR_DEFINITIONS))
     self.statusText = statusText
 
     -- Divider below presets & status
     local divider = Kit:CreateDivider(scrollChild, -60)
 
     -- Section Headers
-    local hFriendly = Kit:CreateSectionHeader(scrollChild, "Friendly Units", 16, 0)
-    local hNPC = Kit:CreateSectionHeader(scrollChild, "NPCs & World", 16, 0)
-    local hEnemy = Kit:CreateSectionHeader(scrollChild, "Enemy Units", 16, 0)
-    local hTitles = Kit:CreateSectionHeader(scrollChild, "Guild & Titles", 16, 0)
+    local hFriendly = Kit:CreateSectionHeader(scrollChild, L["Friendly Units"], 16, 0)
+    local hNPC = Kit:CreateSectionHeader(scrollChild, L["NPCs & World"], 16, 0)
+    local hEnemy = Kit:CreateSectionHeader(scrollChild, L["Enemy Units"], 16, 0)
+    local hTitles = Kit:CreateSectionHeader(scrollChild, L["Guild & Titles"], 16, 0)
 
     local friendlyCVars = {
         "UnitNameFriendlyPlayerName",
@@ -348,7 +357,7 @@ function UI:BuildOptions(parentContainer, isMasterHub)
                 local cb = Kit:CreateCheckbox(
                     scrollChild,
                     "BUT_CB_" .. cvar,
-                    def.label,
+                    L[def.label],
                     16,
                     0,
                     function() return Config:GetCVar(cvar) end,
@@ -356,7 +365,7 @@ function UI:BuildOptions(parentContainer, isMasterHub)
                         Config:SetCVar(cvar, val and true or false)
                         UI:Refresh()
                     end,
-                    def.tooltip
+                    L[def.tooltip] .. "\n\nCVar: " .. cvar .. " (0|1)"
                 )
                 self.checkboxes[cvar] = cb
                 table.insert(list, cb)

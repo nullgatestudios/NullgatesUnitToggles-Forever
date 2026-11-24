@@ -79,6 +79,23 @@ Works on its own with **no other addons or libraries needed**, and appears insid
 
 ---
 
+## Supported Languages
+
+All 10 languages the game client runs in:
+
+- English
+- Deutsch (German)
+- Español (Spanish)
+- Français (French)
+- Italiano (Italian)
+- Português do Brasil (Brazilian Portuguese)
+- Русский (Russian)
+- 한국어 (Korean)
+- 简体中文 (Simplified Chinese)
+- 繁體中文 (Traditional Chinese)
+
+The addon uses your game's language automatically; Mexican Spanish clients get Spanish. The translations were made with machine assistance, so some wording may not be quite right. Corrections are welcome: send a message here on CurseForge.
+
 ## Installation
 
 1. Download the latest release.

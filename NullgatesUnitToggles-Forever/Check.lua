@@ -18,11 +18,12 @@ local function Log(text)
 end
 
 function Check.ShowReport()
+    local L = BUT.L
     return NullgateReport.Show({
         slug = SLUG, name = "Nullgate's Unit Toggles", addon = "NullgatesUnitToggles-Forever", command = "/nut check",
         lines = log,
-        title = "Bug report", selectAll = "Select all", selectLink = "Select link",
-        help = "Press Ctrl+C to copy this report, then paste it into a new report at the link below, with a few words on what happened.",
+        title = L["Bug report"], selectAll = L["Select all"], selectLink = L["Select link"],
+        help = L["Press Ctrl+C to copy this report, then paste it into a new report at the link below, with a few words on what happened."],
     })
 end
 
