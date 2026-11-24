@@ -74,6 +74,7 @@ Works on its own with **no other addons or libraries needed**, and appears insid
 | `/nut all on` / `/nut all off` | Turn every toggle on or off. |
 | `/nut pvp` | Apply the PvP preset. |
 | `/nut reset` | Reset your current profile to the defaults. |
+| `/nut check` | Test the addon in this client and open a bug report window to copy into the report form at nullgatestudios.com/report. |
 | `/nut <setting> [on\|off]` | Turn one toggle on or off, for example `/nut UnitNameEnemyTotemName on`. Leave out `on`/`off` to flip it. |
 
 ---

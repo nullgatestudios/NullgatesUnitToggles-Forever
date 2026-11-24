@@ -458,6 +458,8 @@ SlashCmdList["NULLGATESUNITTOGGLES"] = function(msg)
     elseif cmd == "disableall" then
         Config:SetAll(false)
         PrintChat("All 20 unit toggles set to |cffff2222OFF|r.")
+    elseif cmd == "check" then
+        BUT.Check.Run()
     elseif cmd == "list" or cmd == "status" then
         PrintChat("Current Unit CVar Status (Profile: |cffffd100" .. Config:GetActiveProfile() .. "|r):")
         for _, def in ipairs(Config.CVAR_DEFINITIONS) do
@@ -489,6 +491,7 @@ SlashCmdList["NULLGATESUNITTOGGLES"] = function(msg)
             PrintChat("  /nut pvp - Apply PvP optimized preset")
             PrintChat("  /nut <cvar> [0|1] - Toggle specific CVar")
             PrintChat("  /nut reset - Reset current profile to defaults")
+            PrintChat("  /nut check - Test the addon and open a bug report to copy")
         end
     end
 end
