@@ -92,7 +92,7 @@ All 10 languages the game client runs in:
 - 简体中文 (Simplified Chinese)
 - 繁體中文 (Traditional Chinese)
 
-The addon uses your game's language automatically; Mexican Spanish clients get Spanish. The translations were made with machine assistance, so some wording may not be quite right. Corrections are welcome: send a message here on CurseForge.
+The addon uses your game's language automatically. The translations were made with machine assistance, so some wording may not be quite right. Corrections are welcome: send a message here on CurseForge or [report on our website](https://nullgatestudios.com/report?addon=unit-toggles).
 
 ## Installation
 
