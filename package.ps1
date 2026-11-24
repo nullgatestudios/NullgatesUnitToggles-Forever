@@ -26,7 +26,7 @@ if (-not $addonDirs) {
 $addonDir = $addonDirs[0].FullName
 $addonName = $addonDirs[0].Name
 $tocFile = Join-Path $addonDir "$addonName.toc"
-$changelogFile = Join-Path $rootDir "changelog.md"
+$changelogFile = Join-Path $rootDir "CHANGELOG.md"
 
 # Version Update
 if ($Version) {
@@ -64,7 +64,7 @@ $noteBody
             $changelog = $entry + "`n" + $changelog
         }
         Set-Content -Path $changelogFile -Value $changelog -NoNewline
-        Write-Host "Recorded [$Version] in changelog.md" -ForegroundColor Yellow
+        Write-Host "Recorded [$Version] in CHANGELOG.md" -ForegroundColor Yellow
     }
 }
 
